@@ -193,37 +193,11 @@ func (t *Team) parseJSON(teamID string) {
 		t.updatePlayers()
 		getTeamLogo(team.Logo, team.Name)
 	}
-
-	if info.Updated == 1 {
+	log.Println(info)
+	if info != nil && info.Updated == 1 {
 		t.updatePlayers()
 	}
 
-	// count, err := collection.Count()
-	// if err != nil {
-	// 	log.Fatalln("unable to open collection team, err:", err)
-	// }
-	//
-	// if count == 0 {
-	// 	for _, i := range t.JSON.Result.Teams {
-	// 		err = collection.Insert(i)
-	// 		if err != nil {
-	// 			log.Fatalln("unable insert team into mgo, err:", err)
-	// 		}
-	// 		getTeamLogo(i.Logo, i.Name)
-	// 	}
-	// } else {
-	// 	for _, i := range t.JSON.Result.Teams {
-	// 		count, err = collection.Find(bson.M{"team_id": i.TeamID}).Count()
-	// 		if err != nil {
-	// 			log.Fatalln("unable to find total count of team_id, err: ", err)
-	// 		}
-	// 		if count == 0 {
-	// 			collection.Insert(i)
-	// 			getTeamLogo(i.TeamID, i.Name)
-	// 		}
-	// 		//TODO: Update players
-	// 	}
-	// }
 }
 
 func (t *Team) updatePlayers() {
